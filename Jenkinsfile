@@ -1,13 +1,12 @@
 pipeline {
     agent any
 
-    stages {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 1, unit: 'HOURS')
+    }
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Nuth68/MidthermDevOps.git'
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
