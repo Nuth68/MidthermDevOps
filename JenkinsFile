@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/Nuth68/MidthermDevOps.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+
+    post {
+        failure {
+            mail to: 'pravevinuth888@gmail.com',
+                 subject: 'SpringBootProject-Nuth',
+                 body: "Build Failed!\nCheck: ${env.BUILD_URL}"
+        }
+    }
+}
