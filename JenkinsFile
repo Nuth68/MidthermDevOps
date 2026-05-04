@@ -10,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh './mvnw clean install -DskipTests'
             }
         }
 
         stage('Run') {
             steps {
-                sh 'mvn spring-boot:run &'
+                sh './mvnw spring-boot:run &'
             }
         }
     }
