@@ -14,12 +14,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        failure {
-            mail to: 'pravevinuth888@gmail.com',
-                 subject: 'SpringBootProject-Nuth',
-                 body: "Build Failed!\nCheck: ${env.BUILD_URL}"
-        }
-    }
 }
