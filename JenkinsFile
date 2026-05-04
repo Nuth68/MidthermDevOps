@@ -4,13 +4,19 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/Nuth68/MidthermDevOps.git'
+                git branch: 'main', url: 'https://github.com/Nuth68/MidthermDevOps.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'mvn spring-boot:run &'
             }
         }
     }
